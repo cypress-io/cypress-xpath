@@ -1,14 +1,15 @@
 {
   "name": "cypress-xpath",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Adds XPath command to Cypress test runner",
   "main": "src",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cypress-io/cypress-xpath.git"
+    "url": "https://github.com/cypress-io/cypress-xpath.git"
   },
   "keywords": [
     "cypress",
@@ -25,6 +26,10 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
   "devDependencies": {
-    "cypress": "3.1.2"
+    "cypress": "3.1.2",
+    "semantic-release": "15.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

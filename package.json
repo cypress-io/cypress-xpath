@@ -1,0 +1,30 @@
+{
+  "name": "cypress-xpath",
+  "version": "1.0.0",
+  "description": "Adds XPath command to Cypress test runner",
+  "main": "src",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cypress-io/cypress-xpath.git"
+  },
+  "keywords": [
+    "cypress",
+    "cypress-io",
+    "xpath"
+  ],
+  "files": [
+    "src"
+  ],
+  "author": "Gleb Bahmutov <gleb@cypress.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cypress-io/cypress-xpath/issues"
+  },
+  "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
+  "devDependencies": {
+    "cypress": "3.1.2"
+  }
+}

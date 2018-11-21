@@ -5,4 +5,4 @@ workflows:
   build:
     jobs:
       - cypress/run
-      - npm run semantic-release
+      - run: npm run semantic-release

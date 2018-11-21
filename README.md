@@ -25,6 +25,8 @@ it('finds list items', () => {
 })
 ```
 
+See [cypress/integration/spec.js](cypress/integration/spec.js)
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE.md).

@@ -27,6 +27,12 @@ it('finds list items', () => {
 
 See [cypress/integration/spec.js](cypress/integration/spec.js)
 
+## Roadmap
+
+- [ ] wrap returned DOM nodes in jQuery [#2](https://github.com/cypress-io/cypress-xpath/issues/2)
+- [ ] retry the assertion that follows [#3](https://github.com/cypress-io/cypress-xpath/issues/3)
+- [ ] add TypeScript definitions [#4](https://github.com/cypress-io/cypress-xpath/issues/4)
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE.md).

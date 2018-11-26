@@ -32,6 +32,7 @@ See [cypress/integration/spec.js](cypress/integration/spec.js)
 - [ ] wrap returned DOM nodes in jQuery [#2](https://github.com/cypress-io/cypress-xpath/issues/2)
 - [ ] retry the assertion that follows [#3](https://github.com/cypress-io/cypress-xpath/issues/3)
 - [ ] add TypeScript definitions [#4](https://github.com/cypress-io/cypress-xpath/issues/4)
+- [ ] search from the previous subject element [#5](https://github.com/cypress-io/cypress-xpath/issues/5)
 
 ## License
 

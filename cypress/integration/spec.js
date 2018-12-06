@@ -5,20 +5,23 @@ describe('cypress-xpath', () => {
     expect(cy).property('xpath').to.be.a('function')
   })
 
-  it('finds h1', () => {
-    cy.visit('cypress/integration/index.html')
-    cy.xpath('//h1').should('have.length', 1)
-  })
-
-  it('returns jQuery wrapped elements', () => {
-    cy.visit('cypress/integration/index.html')
-    cy.xpath('//h1').then((el$) => {
-      expect(el$).to.have.property('jquery')
+  context('elements', () => {
+    beforeEach(() => {
+      cy.visit('cypress/integration/index.html')
     })
-  })
 
-  it('gets h1 text', () => {
-    cy.visit('cypress/integration/index.html')
-    cy.xpath('//h1/text()').its('0.textContent').should('equal', 'cypress-xpath')
+    it('finds h1', () => {
+      cy.xpath('//h1').should('have.length', 1)
+    })
+
+    it('returns jQuery wrapped elements', () => {
+      cy.xpath('//h1').then((el$) => {
+        expect(el$).to.have.property('jquery')
+      })
+    })
+
+    it('gets h1 text', () => {
+      cy.xpath('//h1/text()').its('0.textContent').should('equal', 'cypress-xpath')
+    })
   })
 })

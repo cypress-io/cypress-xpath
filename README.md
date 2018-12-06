@@ -25,6 +25,8 @@ it('finds list items', () => {
 })
 ```
 
+**note:** you can test XPath expressions from DevTools console using `$x(...)` function, for example `$x('//div')` to find all divs.
+
 See [cypress/integration/spec.js](cypress/integration/spec.js)
 
 ## Roadmap

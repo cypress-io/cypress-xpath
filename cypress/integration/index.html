@@ -2,4 +2,10 @@
   <main>
     <h1>cypress-xpath</h1>
   </main>
+  <script>
+    setTimeout(() => {
+      document.querySelector('main').insertAdjacentHTML('afterend',
+        '<div id="inserted">inserted text</div>')
+    }, 1000)
+  </script>
 </body>

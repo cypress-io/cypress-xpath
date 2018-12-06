@@ -24,86 +24,86 @@ const xpath = (selector) => {
   const isBoolean = (xpathResult) => xpathResult.resultType === XPathResult.BOOLEAN_TYPE
   const booleanResult = (xpathResult) => xpathResult.booleanValue
 
-  let nodes = []
-  const document = cy.state('window').document
-  let iterator = document.evaluate(selector, document)
+  const isPrimitive = (x) =>
+    Cypress._.isNumber(x) || Cypress._.isString(x) || Cypress._.isBoolean(x)
 
-  if (isNumber(iterator)) {
-    const result = numberResult(iterator)
-    Cypress.log({
-      name: 'xpath',
-      message: selector,
-      $el: nodes,
-      consoleProps () {
+  // options to log later
+  const log = {
+    name: 'xpath',
+    message: selector,
+  }
+
+  const getValue = () => {
+    let nodes = []
+    const document = cy.state('window').document
+    let iterator = document.evaluate(selector, document)
+
+    if (isNumber(iterator)) {
+      const result = numberResult(iterator)
+      log.consoleProps = () => {
         return {
           'XPath': selector,
           type: 'number',
           result
         }
-      },
-    })
-    return result
-  }
+      }
+      return result
+    }
 
-  if (isString(iterator)) {
-    const result = stringResult(iterator)
-    Cypress.log({
-      name: 'xpath',
-      message: selector,
-      $el: nodes,
-      consoleProps () {
+    if (isString(iterator)) {
+      const result = stringResult(iterator)
+      log.consoleProps = () => {
         return {
           'XPath': selector,
           type: 'string',
           result
         }
-      },
-    })
-    return result
-  }
+      }
+      return result
+    }
 
-  if (isBoolean(iterator)) {
-    const result = booleanResult(iterator)
-    Cypress.log({
-      name: 'xpath',
-      message: selector,
-      $el: nodes,
-      consoleProps () {
+    if (isBoolean(iterator)) {
+      const result = booleanResult(iterator)
+      log.consoleProps = () => {
         return {
           'XPath': selector,
           type: 'boolean',
           result
         }
-      },
-    })
-    return result
-  }
-
-  try {
-    let node = iterator.iterateNext()
-
-    while (node) {
-      nodes.push(node)
-      node = iterator.iterateNext()
+      }
+      return result
     }
-  } catch (e) {
-    console.error('Document tree modified during iteration', e)
 
-    return null
+    try {
+      let node = iterator.iterateNext()
+
+      while (node) {
+        nodes.push(node)
+        node = iterator.iterateNext()
+      }
+
+      log.consoleProps = () => {
+        return {
+          'XPath': selector,
+        }
+      }
+
+      return nodes
+    } catch (e) {
+      console.error('Document tree modified during iteration', e)
+
+      return null
+    }
   }
+
+  const nodes = getValue()
 
   // TODO set found elements on the command log?
-  Cypress.log({
-    name: 'xpath',
-    message: selector,
-    $el: nodes,
-    consoleProps () {
-      return {
-        'XPath': selector,
-      }
-    },
-  })
+  Cypress.log(log)
 
+  if (isPrimitive(nodes)) {
+    return nodes
+  }
   return Cypress.$(nodes)
 }
 

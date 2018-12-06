@@ -24,30 +24,59 @@ const xpath = (selector) => {
   const isBoolean = (xpathResult) => xpathResult.resultType === XPathResult.BOOLEAN_TYPE
   const booleanResult = (xpathResult) => xpathResult.booleanValue
 
-  Cypress.log({
-    name: 'xpath',
-    message: selector,
-    consoleProps () {
-      return {
-        'XPath': selector,
-      }
-    },
-  })
-
   let nodes = []
   const document = cy.state('window').document
   let iterator = document.evaluate(selector, document)
 
   if (isNumber(iterator)) {
-    return numberResult(iterator)
+    const result = numberResult(iterator)
+    Cypress.log({
+      name: 'xpath',
+      message: selector,
+      $el: nodes,
+      consoleProps () {
+        return {
+          'XPath': selector,
+          type: 'number',
+          result
+        }
+      },
+    })
+    return result
   }
 
   if (isString(iterator)) {
-    return stringResult(iterator)
+    const result = stringResult(iterator)
+    Cypress.log({
+      name: 'xpath',
+      message: selector,
+      $el: nodes,
+      consoleProps () {
+        return {
+          'XPath': selector,
+          type: 'string',
+          result
+        }
+      },
+    })
+    return result
   }
 
   if (isBoolean(iterator)) {
-    return booleanResult(iterator)
+    const result = booleanResult(iterator)
+    Cypress.log({
+      name: 'xpath',
+      message: selector,
+      $el: nodes,
+      consoleProps () {
+        return {
+          'XPath': selector,
+          type: 'boolean',
+          result
+        }
+      },
+    })
+    return result
   }
 
   try {
@@ -64,6 +93,16 @@ const xpath = (selector) => {
   }
 
   // TODO set found elements on the command log?
+  Cypress.log({
+    name: 'xpath',
+    message: selector,
+    $el: nodes,
+    consoleProps () {
+      return {
+        'XPath': selector,
+      }
+    },
+  })
 
   return Cypress.$(nodes)
 }

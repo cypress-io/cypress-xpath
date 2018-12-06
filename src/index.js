@@ -65,7 +65,7 @@ const xpath = (selector) => {
 
   // TODO set found elements on the command log?
 
-  return nodes
+  return Cypress.$(nodes)
 }
 
 Cypress.Commands.add('xpath', xpath)

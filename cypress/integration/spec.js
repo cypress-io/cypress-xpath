@@ -10,6 +10,13 @@ describe('cypress-xpath', () => {
     cy.xpath('//h1').should('have.length', 1)
   })
 
+  it('returns jQuery wrapped elements', () => {
+    cy.visit('cypress/integration/index.html')
+    cy.xpath('//h1').then((el$) => {
+      expect(el$).to.have.property('jquery')
+    })
+  })
+
   it('gets h1 text', () => {
     cy.visit('cypress/integration/index.html')
     cy.xpath('//h1/text()').its('0.textContent').should('equal', 'cypress-xpath')

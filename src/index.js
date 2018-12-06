@@ -13,7 +13,7 @@
   })
  ```
  */
-const xpath = (selector) => {
+const xpath = (selector, options = {}) => {
   /* global XPathResult */
   const isNumber = (xpathResult) => xpathResult.resultType === XPathResult.NUMBER_TYPE
   const numberResult = (xpathResult) => xpathResult.numberValue
@@ -96,15 +96,24 @@ const xpath = (selector) => {
     }
   }
 
-  const nodes = getValue()
-
-  // TODO set found elements on the command log?
-  Cypress.log(log)
-
-  if (isPrimitive(nodes)) {
-    return nodes
+  const resolveValue = () => {
+    return Cypress.Promise.try(getValue).then(value => {
+      return cy.verifyUpcomingAssertions(value, options, {
+        onRetry: resolveValue,
+      })
+    })
   }
-  return Cypress.$(nodes)
+
+  return resolveValue().then((value) => {
+    // TODO set found elements on the command log?
+    Cypress.log(log)
+    if (isPrimitive(value)) {
+      return value
+    }
+    return Cypress.$(value)
+  })
+
+
 }
 
 Cypress.Commands.add('xpath', xpath)

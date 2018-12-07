@@ -25,12 +25,14 @@ it('finds list items', () => {
 })
 ```
 
+**note:** you can test XPath expressions from DevTools console using `$x(...)` function, for example `$x('//div')` to find all divs.
+
 See [cypress/integration/spec.js](cypress/integration/spec.js)
 
 ## Roadmap
 
 - [x] wrap returned DOM nodes in jQuery [#2](https://github.com/cypress-io/cypress-xpath/issues/2)
-- [ ] retry the assertion that follows [#3](https://github.com/cypress-io/cypress-xpath/issues/3)
+- [x] retry the assertion that follows [#3](https://github.com/cypress-io/cypress-xpath/issues/3)
 - [ ] add TypeScript definitions [#4](https://github.com/cypress-io/cypress-xpath/issues/4)
 - [ ] search from the previous subject element [#5](https://github.com/cypress-io/cypress-xpath/issues/5)
 

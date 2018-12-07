@@ -24,6 +24,11 @@ describe('cypress-xpath', () => {
       cy.xpath('//h1/text()').its('0.textContent').should('equal', 'cypress-xpath')
     })
 
+    it('retries until element is inserted', () => {
+      // the element will be inserted after 1 second
+      cy.xpath('string(//*[@id="inserted"])').should('equal', 'inserted text')
+    })
+
     describe('primitives', () => {
       it('counts h1 elements', () => {
         cy.xpath('count(//h1)').should('equal', 1)

@@ -1,6 +1,6 @@
 ## MIT License
 
-Copyright (c) 2017 Cypress.io https://cypress.io
+Copyright (c) 2018 Cypress.io https://www.cypress.io
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

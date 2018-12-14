@@ -1,8 +1,12 @@
 <body>
   <main>
     <h1>cypress-xpath</h1>
+    <button id="first-button">Click me</button>
   </main>
   <script>
+    document.getElementById('first-button').addEventListener('click', () => {
+      window.alert('you clicked first button')
+    })
     setTimeout(() => {
       document.querySelector('main').insertAdjacentHTML('afterend',
         '<div id="inserted">inserted text</div>')

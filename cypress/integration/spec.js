@@ -43,5 +43,18 @@ describe('cypress-xpath', () => {
         cy.xpath('boolean(//h2)').should('be.false')
       })
     })
+
+    describe('clicking', () => {
+      it('on button', () => {
+        // this button invokes window.alert when clicked
+        const alert = cy.stub()
+        cy.on('window:alert', alert)
+        cy.xpath('//*[@id="first-button"]').click()
+          .then(() => {
+            expect(alert).to.have.been.calledOnce
+          })
+
+      })
+    })
   })
 })

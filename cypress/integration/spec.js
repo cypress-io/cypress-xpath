@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/// <reference path="../../src/index.d.ts" />
 
 describe('cypress-xpath', () => {
   it('adds xpath command', () => {

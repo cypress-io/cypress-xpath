@@ -3,7 +3,9 @@
 
 describe('cypress-xpath', () => {
   it('adds xpath command', () => {
-    expect(cy).property('xpath').to.be.a('function')
+    expect(cy)
+      .property('xpath')
+      .to.be.a('function')
   })
 
   context('elements', () => {
@@ -16,13 +18,15 @@ describe('cypress-xpath', () => {
     })
 
     it('returns jQuery wrapped elements', () => {
-      cy.xpath('//h1').then((el$) => {
+      cy.xpath('//h1').then(el$ => {
         expect(el$).to.have.property('jquery')
       })
     })
 
     it('gets h1 text', () => {
-      cy.xpath('//h1/text()').its('0.textContent').should('equal', 'cypress-xpath')
+      cy.xpath('//h1/text()')
+        .its('0.textContent')
+        .should('equal', 'cypress-xpath')
     })
 
     it('retries until element is inserted', () => {
@@ -45,16 +49,23 @@ describe('cypress-xpath', () => {
       })
     })
 
+    describe('typing', () => {
+      it('works on text input', () => {
+        cy.xpath('//*[@id="name"]').type('World')
+        cy.contains('span#greeting', 'Hello, World')
+      })
+    })
+
     describe('clicking', () => {
       it('on button', () => {
         // this button invokes window.alert when clicked
         const alert = cy.stub()
         cy.on('window:alert', alert)
-        cy.xpath('//*[@id="first-button"]').click()
+        cy.xpath('//*[@id="first-button"]')
+          .click()
           .then(() => {
             expect(alert).to.have.been.calledOnce
           })
-
       })
     })
   })

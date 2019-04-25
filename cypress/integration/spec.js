@@ -34,6 +34,35 @@ describe('cypress-xpath', () => {
       cy.xpath('string(//*[@id="inserted"])').should('equal', 'inserted text')
     })
 
+    describe('chaining', () => {
+      it('finds h1 within main', () => {
+        // first assert that h1 doesn't exist as a child of the implicit document subject
+        cy.xpath('./h1').should('be.empty')
+
+        cy.xpath('//main').xpath('./h1').should('not.be.empty')
+      })
+
+      it('finds body outside of main when succumbing to // trap', () => {
+        // first assert that body doesn't actually exist within main
+        cy.xpath('//main').xpath('.//body').should('be.empty')
+
+        cy.xpath('//main').xpath('//body').should('not.be.empty')
+      })
+
+      it('finds h1 within document', () => {
+        cy.document().xpath('//h1').should('not.be.empty')
+      })
+
+      it('throws when subject is more than a single element', (done) => {
+        cy.on('fail', (err) => {
+          expect(err.message).to.eq('xpath() can only be called on a single element. Your subject contained 2 elements.')
+          done()
+        })
+
+        cy.get('main, div').xpath('foo')
+      })
+    })
+
     describe('primitives', () => {
       it('counts h1 elements', () => {
         cy.xpath('count(//h1)').should('equal', 1)

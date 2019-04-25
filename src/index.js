@@ -40,11 +40,14 @@ const xpath = (subject, selector, options = {}) => {
   const getValue = () => {
     let nodes = []
     let contextNode
+    let withinSubject = cy.state('withinSubject')
 
     if (Cypress.dom.isElement(subject)) {
       contextNode = subject[0]
     } else if (Cypress.dom.isDocument(subject)) {
       contextNode = subject
+    } else if (withinSubject) {
+      contextNode = withinSubject[0]
     } else {
       contextNode = cy.state('window').document
     }

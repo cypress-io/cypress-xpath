@@ -63,6 +63,28 @@ describe('cypress-xpath', () => {
       })
     })
 
+    describe('within()', () => {
+      it('finds h1 within within-subject', () => {
+        // first assert that h1 doesn't exist as a child of the implicit document subject
+        cy.xpath('./h1').should('be.empty')
+
+        cy.xpath('//main').within(() => {
+          cy.xpath('./h1').should('not.be.empty')
+        })
+      })
+
+      it('finds body outside of within-subject when succumbing to // trap', () => {
+        // first assert that body doesn't actually exist within main
+        cy.xpath('//main').within(() => {
+          cy.xpath('.//body').should('be.empty')
+        });
+
+        cy.xpath('//main').within(() => {
+          cy.xpath('//body').should('not.be.empty')
+        });
+      })
+    })
+
     describe('primitives', () => {
       it('counts h1 elements', () => {
         cy.xpath('count(//h1)').should('equal', 1)

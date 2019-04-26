@@ -29,6 +29,12 @@ describe('cypress-xpath', () => {
       })
     })
 
+    it('provides jQuery wrapped elements to assertions', () => {
+      cy.xpath('//h1').should(el$ => {
+        expect(el$).to.have.property('jquery')
+      })
+    })
+
     it('gets h1 text', () => {
       cy.xpath('//h1/text()')
         .its('0.textContent')

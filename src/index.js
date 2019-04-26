@@ -114,6 +114,9 @@ const xpath = (subject, selector, options = {}) => {
 
   const resolveValue = () => {
     return Cypress.Promise.try(getValue).then(value => {
+      if (!isPrimitive(value)) {
+        value = Cypress.$(value)
+      }
       return cy.verifyUpcomingAssertions(value, options, {
         onRetry: resolveValue,
       })
@@ -123,10 +126,7 @@ const xpath = (subject, selector, options = {}) => {
   return resolveValue().then((value) => {
     // TODO set found elements on the command log?
     Cypress.log(log)
-    if (isPrimitive(value)) {
-      return value
-    }
-    return Cypress.$(value)
+    return value
   })
 
 

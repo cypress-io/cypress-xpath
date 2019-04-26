@@ -23,6 +23,12 @@ describe('cypress-xpath', () => {
       })
     })
 
+    it('returns primitives as is', () => {
+      cy.xpath('string(//h1)').then(el$ => {
+        expect(el$).to.not.have.property('jquery')
+      })
+    })
+
     it('gets h1 text', () => {
       cy.xpath('//h1/text()')
         .its('0.textContent')

@@ -13,7 +13,7 @@
   })
  ```
  */
-const xpath = (selector, options = {}) => {
+const xpath = (subject, selector, options = {}) => {
   /* global XPathResult */
   const isNumber = (xpathResult) => xpathResult.resultType === XPathResult.NUMBER_TYPE
   const numberResult = (xpathResult) => xpathResult.numberValue
@@ -33,10 +33,26 @@ const xpath = (selector, options = {}) => {
     message: selector,
   }
 
+  if (Cypress.dom.isElement(subject) && subject.length > 1) {
+    throw new Error('xpath() can only be called on a single element. Your subject contained ' + subject.length + ' elements.')
+  }
+
   const getValue = () => {
     let nodes = []
-    const document = cy.state('window').document
-    let iterator = document.evaluate(selector, document)
+    let contextNode
+    let withinSubject = cy.state('withinSubject')
+
+    if (Cypress.dom.isElement(subject)) {
+      contextNode = subject[0]
+    } else if (Cypress.dom.isDocument(subject)) {
+      contextNode = subject
+    } else if (withinSubject) {
+      contextNode = withinSubject[0]
+    } else {
+      contextNode = cy.state('window').document
+    }
+
+    let iterator = document.evaluate(selector, contextNode)
 
     if (isNumber(iterator)) {
       const result = numberResult(iterator)
@@ -116,4 +132,4 @@ const xpath = (selector, options = {}) => {
 
 }
 
-Cypress.Commands.add('xpath', xpath)
+Cypress.Commands.add('xpath', { prevSubject: ['optional', 'element', 'document'] }, xpath)

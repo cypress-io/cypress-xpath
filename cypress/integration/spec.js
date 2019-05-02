@@ -49,20 +49,20 @@ describe('cypress-xpath', () => {
     describe('chaining', () => {
       it('finds h1 within main', () => {
         // first assert that h1 doesn't exist as a child of the implicit document subject
-        cy.xpath('./h1').should('be.empty')
+        cy.xpath('./h1').should('not.exist')
 
-        cy.xpath('//main').xpath('./h1').should('not.be.empty')
+        cy.xpath('//main').xpath('./h1').should('exist')
       })
 
       it('finds body outside of main when succumbing to // trap', () => {
         // first assert that body doesn't actually exist within main
-        cy.xpath('//main').xpath('.//body').should('be.empty')
+        cy.xpath('//main').xpath('.//body').should('not.exist')
 
-        cy.xpath('//main').xpath('//body').should('not.be.empty')
+        cy.xpath('//main').xpath('//body').should('exist')
       })
 
       it('finds h1 within document', () => {
-        cy.document().xpath('//h1').should('not.be.empty')
+        cy.document().xpath('//h1').should('exist')
       })
 
       it('throws when subject is more than a single element', (done) => {
@@ -78,21 +78,21 @@ describe('cypress-xpath', () => {
     describe('within()', () => {
       it('finds h1 within within-subject', () => {
         // first assert that h1 doesn't exist as a child of the implicit document subject
-        cy.xpath('./h1').should('be.empty')
+        cy.xpath('./h1').should('not.exist')
 
         cy.xpath('//main').within(() => {
-          cy.xpath('./h1').should('not.be.empty')
+          cy.xpath('./h1').should('exist')
         })
       })
 
       it('finds body outside of within-subject when succumbing to // trap', () => {
         // first assert that body doesn't actually exist within main
         cy.xpath('//main').within(() => {
-          cy.xpath('.//body').should('be.empty')
+          cy.xpath('.//body').should('not.exist')
         });
 
         cy.xpath('//main').within(() => {
-          cy.xpath('//body').should('not.be.empty')
+          cy.xpath('//body').should('exist')
         });
       })
     })

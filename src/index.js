@@ -124,8 +124,10 @@ const xpath = (subject, selector, options = {}) => {
   }
 
   return resolveValue().then((value) => {
-    // TODO set found elements on the command log?
-    Cypress.log(log)
+    if (options.log !== false) {
+      // TODO set found elements on the command log?
+      Cypress.log(log)
+    }
     return value
   })
 

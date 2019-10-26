@@ -27,7 +27,7 @@
   "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
   "devDependencies": {
     "cypress": "3.4.1",
-    "semantic-release": "15.13.24"
+    "semantic-release": "15.13.28"
   },
   "publishConfig": {
     "access": "public"

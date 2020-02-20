@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.15.0
+  cypress: cypress-io/cypress@1.16.1
 jobs:
   release:
     executor: cypress/base-10

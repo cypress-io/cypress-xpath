@@ -101,6 +101,7 @@ const xpath = (subject, selector, options = {}) => {
       log.consoleProps = () => {
         return {
           'XPath': selector,
+          'result': nodes.length === 1 ? nodes[0] : nodes
         }
       }
 

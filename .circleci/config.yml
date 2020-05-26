@@ -3,7 +3,7 @@ orbs:
   cypress: cypress-io/cypress@1.23.0
 jobs:
   release:
-    executor: cypress/base-10
+    executor: cypress/browsers-chrome78-ff70
     steps:
       - attach_workspace:
           at: ~/
@@ -11,7 +11,8 @@ jobs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - cypress/run:
+          executor: cypress/browsers-chrome78-ff70
       - release:
           requires:
             - cypress/run

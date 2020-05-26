@@ -24,6 +24,26 @@ workflows:
           install-command: echo 'Nothing to install in this job'
           no-workspace: true
 
+      - cypress/run:
+          name: Chrome tests
+          requires:
+            - Install
+          executor: cypress/browsers-chrome78-ff70
+          browser: chrome
+          install-command: echo 'Nothing to install in this job'
+          no-workspace: true
+
+      - cypress/run:
+          name: Firefox tests
+          requires:
+            - Install
+          executor: cypress/browsers-chrome78-ff70
+          browser: firefox
+          install-command: echo 'Nothing to install in this job'
+          no-workspace: true
+
       - release:
           requires:
             - Electron tests
+            - Chrome tests
+            - Firefox tests

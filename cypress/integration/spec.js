@@ -132,4 +132,26 @@ describe('cypress-xpath', () => {
       })
     })
   })
+
+  context('logging', () => {
+    beforeEach(() => {
+      cy.visit('cypress/integration/index.html')
+    })
+
+    it('should log by default', () => {
+      cy.spy(Cypress, 'log').log(false)
+
+      cy.xpath('//h1').then(() => {
+        expect(Cypress.log).to.be.calledWithMatch({ name: 'xpath' })
+      })
+    })
+
+    it('should not log when provided log: false', () => {
+      cy.spy(Cypress, 'log').log(false)
+
+      cy.xpath('//h1', { log: false }).then(() => {
+        expect(Cypress.log).to.not.be.calledWithMatch({ name: 'xpath' })
+      })
+    })
+  })
 })

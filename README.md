@@ -2,10 +2,15 @@
 
 > Adds XPath command to [Cypress.io](https://www.cypress.io) test runner
 
-## Install
+## Install with npm
 
 ```shell
 npm install -D cypress-xpath
+```
+## Install with Yarn
+
+```shell
+yarn add cypress-xpath --dev
 ```
 
 Then include in your project's `cypress/support/index.js`

@@ -52,7 +52,7 @@ const xpath = (subject, selector, options = {}) => {
       contextNode = cy.state('window').document
     }
 
-    let iterator = document.evaluate(selector, contextNode)
+    let iterator = (contextNode.ownerDocument || contextNode).evaluate(selector, contextNode)
 
     if (isNumber(iterator)) {
       const result = numberResult(iterator)

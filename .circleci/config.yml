@@ -26,4 +26,4 @@ workflows:
 
       - release:
           requires:
-            - cypress/run
+            - Electron tests

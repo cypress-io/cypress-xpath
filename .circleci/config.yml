@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.24.0
+  cypress: cypress-io/cypress@1.25.0
 jobs:
   release:
     executor: cypress/browsers-chrome78-ff70

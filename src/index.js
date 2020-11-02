@@ -117,6 +117,8 @@ const xpath = (subject, selector, options = {}) => {
     return Cypress.Promise.try(getValue).then(value => {
       if (!isPrimitive(value)) {
         value = Cypress.$(value)
+        // Add the ".selector" property because Cypress uses it for error messages
+        value.selector = selector
       }
       return cy.verifyUpcomingAssertions(value, options, {
         onRetry: resolveValue,

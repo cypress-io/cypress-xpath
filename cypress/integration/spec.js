@@ -146,6 +146,18 @@ describe('cypress-xpath', () => {
       })
     })
 
+    it('logs the selector when not found', (done) => {
+      cy.xpath('//h1') // does exist
+      cy.on('fail', (e) => {
+        if (e.message !== 'Timed out retrying: Expected to find element: `//h2`, but never found it.') {
+          return done(e)
+        }
+        // no errors, the error message for not found selector is correct
+        done()
+      })
+      cy.xpath('//h2', { timeout: 100 }) // does not exist
+    })
+
     it('should not log when provided log: false', () => {
       cy.spy(Cypress, 'log').log(false)
 

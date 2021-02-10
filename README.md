@@ -82,6 +82,28 @@ cy.xpath('//body').within(() => {
 
 This explanation was shamelessly copied from [teamcapybara/capybara][capybara-xpath-trap].
 
+## TypeScript and IntelliSense support
+
+To properly load the types for `cy.xpath` command, add to your spec file the following comment.
+
+```js
+/// <reference types="cypress-xpath" />
+```
+
+![cypress-xpath intellisense](./images/cypress-xpath-reference.gif)
+
+If using TypeScript, add `cypress-xpath` to the list of types to be loaded in `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "types": ["cypress", "cypress-xpath"]
+  }
+}
+```
+
+For more, see [Intelligent Code Completion](https://on.cypress.io/intellisense)
+
 ## Roadmap
 
 - [x] wrap returned DOM nodes in jQuery [#2](https://github.com/cypress-io/cypress-xpath/issues/2)
@@ -93,6 +115,11 @@ This explanation was shamelessly copied from [teamcapybara/capybara][capybara-xp
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE.md).
+
+## Additional info
+
+- [Writing a Custom Cypress Command](https://glebbahmutov.com/blog/writing-custom-cypress-command/)
+- [How to Publish Custom Cypress Command on NPM](https://glebbahmutov.com/blog/publishing-cypress-command/)
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/

@@ -20,6 +20,7 @@
   "files": [
     "src"
   ],
+  "types": "src",
   "author": "Gleb Bahmutov <gleb@cypress.io>",
   "license": "MIT",
   "bugs": {

@@ -149,7 +149,13 @@ describe('cypress-xpath', () => {
     it('logs the selector when not found', (done) => {
       cy.xpath('//h1') // does exist
       cy.on('fail', (e) => {
-        if (e.message !== 'Timed out retrying: Expected to find element: `//h2`, but never found it.') {
+        const isExpectedErrorMessage = (message) =>
+          message.includes('Timed out retrying') &&
+          message.includes('Expected to find element: `//h2`, but never found it.')
+
+        if (!isExpectedErrorMessage(e.message)) {
+          console.error('Cypress test failed with an unexpected error message')
+          console.error(e)
           return done(e)
         }
         // no errors, the error message for not found selector is correct

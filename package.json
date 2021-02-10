@@ -5,6 +5,7 @@
   "main": "src",
   "scripts": {
     "test": "cypress run",
+    "cy:open": "cypress open",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -26,7 +27,7 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
   "devDependencies": {
-    "cypress": "6.1.0",
+    "cypress": "6.4.0",
     "semantic-release": "17.3.8"
   },
   "publishConfig": {

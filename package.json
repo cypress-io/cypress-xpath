@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cypress run",
     "cy:open": "cypress open",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "badges": "update-badge cypress"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
   "devDependencies": {
     "cypress": "6.8.0",
+    "dependency-version-badge": "1.9.1",
     "semantic-release": "17.4.2"
   },
   "publishConfig": {

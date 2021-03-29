@@ -1,5 +1,5 @@
 # cypress-xpath
-[![CircleCI](https://circleci.com/gh/cypress-io/cypress-xpath.svg?style=svg&circle-token=c1c1eb7da56fcc8a49b96e7155161728987f9878)](https://circleci.com/gh/cypress-io/cypress-xpath) [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-6.4.0-brightgreen)
+[![CircleCI](https://circleci.com/gh/cypress-io/cypress-xpath.svg?style=svg&circle-token=c1c1eb7da56fcc8a49b96e7155161728987f9878)](https://circleci.com/gh/cypress-io/cypress-xpath) [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-6.8.0-brightgreen)
 
 > Adds XPath command to [Cypress.io](https://www.cypress.io) test runner
 
@@ -115,6 +115,14 @@ For more, see [Intelligent Code Completion](https://on.cypress.io/intellisense)
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE.md).
+
+## Update badge
+
+To update the Cypress version badge in this README file run
+
+```
+$ npm run badges
+```
 
 ## Additional info
 

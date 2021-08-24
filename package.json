@@ -31,7 +31,7 @@
   "devDependencies": {
     "cypress": "7.7.0",
     "dependency-version-badge": "1.10.0",
-    "semantic-release": "17.4.5"
+    "semantic-release": "17.4.6"
   },
   "publishConfig": {
     "access": "public"

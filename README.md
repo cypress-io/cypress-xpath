@@ -1,4 +1,5 @@
 # cypress-xpath
+
 [![CircleCI](https://circleci.com/gh/cypress-io/cypress-xpath.svg?style=svg&circle-token=c1c1eb7da56fcc8a49b96e7155161728987f9878)](https://circleci.com/gh/cypress-io/cypress-xpath) [![renovate-app badge][renovate-badge]][renovate-app] ![cypress version](https://img.shields.io/badge/cypress-6.8.0-brightgreen)
 
 > Adds XPath command to [Cypress.io](https://www.cypress.io) test runner
@@ -8,16 +9,17 @@
 ```shell
 npm install -D cypress-xpath
 ```
+
 ## Install with Yarn
 
 ```shell
 yarn add cypress-xpath --dev
 ```
 
-Then include in your project's `cypress/support/index.js`
+Then include in your project's [support file](https://on.cypress.io/support-file)
 
 ```js
-require('cypress-xpath')
+require("cypress-xpath");
 ```
 
 ## Use
@@ -25,31 +27,27 @@ require('cypress-xpath')
 After installation your `cy` object will have `xpath` command.
 
 ```js
-it('finds list items', () => {
-  cy.xpath('//ul[@class="todo-list"]//li')
-    .should('have.length', 3)
-})
+it("finds list items", () => {
+  cy.xpath('//ul[@class="todo-list"]//li').should("have.length", 3);
+});
 ```
 
 You can also chain `xpath` off of another command.
 
 ```js
-it('finds list items', () => {
-  cy.xpath('//ul[@class="todo-list"]')
-    .xpath('./li')
-    .should('have.length', 3)
-})
+it("finds list items", () => {
+  cy.xpath('//ul[@class="todo-list"]').xpath("./li").should("have.length", 3);
+});
 ```
 
 As with other cy commands, it is scoped by `cy.within()`.
 
 ```js
-it('finds list items', () => {
+it("finds list items", () => {
   cy.xpath('//ul[@class="todo-list"]').within(() => {
-    cy.xpath('./li')
-      .should('have.length', 3)
+    cy.xpath("./li").should("have.length", 3);
   });
-})
+});
 ```
 
 **note:** you can test XPath expressions from DevTools console using `$x(...)` function, for example `$x('//div')` to find all divs.
@@ -61,23 +59,21 @@ See [cypress/integration/spec.js](cypress/integration/spec.js)
 In XPath the expression // means something very specific, and it might not be what you think. Contrary to common belief, // means "anywhere in the document" not "anywhere in the current context". As an example:
 
 ```js
-cy.xpath('//body')
-  .xpath('//script')
+cy.xpath("//body").xpath("//script");
 ```
 
 You might expect this to find all script tags in the body, but actually, it finds all script tags in the entire document, not only those in the body! What you're looking for is the .// expression which means "any descendant of the current node":
 
 ```js
-cy.xpath('//body')
-  .xpath('.//script')
+cy.xpath("//body").xpath(".//script");
 ```
 
 The same thing goes for within:
 
 ```js
-cy.xpath('//body').within(() => {
-  cy.xpath('.//script')
-})
+cy.xpath("//body").within(() => {
+  cy.xpath(".//script");
+});
 ```
 
 This explanation was shamelessly copied from [teamcapybara/capybara][capybara-xpath-trap].

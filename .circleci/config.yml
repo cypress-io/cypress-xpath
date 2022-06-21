@@ -3,7 +3,7 @@ orbs:
   cypress: cypress-io/cypress@2
 jobs:
   release:
-    executor: cypress/browsers-chrome99-ff97
+    executor: cypress/browsers-node16.14.0-chrome99-ff97
     steps:
       - attach_workspace:
           at: ~/
@@ -14,13 +14,13 @@ workflows:
     jobs:
       - cypress/install:
           name: Install
-          executor: cypress/browsers-chrome99-ff97
+          executor: cypress/browsers-node16.14.0-chrome99-ff97
 
       - cypress/run:
           name: Electron tests
           requires:
             - Install
-          executor: cypress/browsers-chrome99-ff97
+          executor: cypress/browsers-node16.14.0-chrome99-ff97
           install-command: echo 'Nothing to install in this job'
           no-workspace: true
 
@@ -28,7 +28,7 @@ workflows:
           name: Chrome tests
           requires:
             - Install
-          executor: cypress/browsers-chrome99-ff97
+          executor: cypress/browsers-node16.14.0-chrome99-ff97
           browser: chrome
           install-command: echo 'Nothing to install in this job'
           no-workspace: true
@@ -37,7 +37,7 @@ workflows:
           name: Firefox tests
           requires:
             - Install
-          executor: cypress/browsers-chrome99-ff97
+          executor: cypress/browsers-node16.14.0-chrome99-ff97
           browser: firefox
           install-command: echo 'Nothing to install in this job'
           no-workspace: true

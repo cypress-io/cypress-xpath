@@ -3,7 +3,7 @@ orbs:
   cypress: cypress-io/cypress@2
 jobs:
   release:
-    executor: browsers-chrome78-ff70
+    executor: cypress/browsers-chrome78-ff70
     steps:
       - attach_workspace:
           at: ~/
@@ -14,13 +14,13 @@ workflows:
     jobs:
       - cypress/install:
           name: Install
-          executor: browsers-chrome78-ff70
+          executor: cypress/browsers-chrome78-ff70
 
       - cypress/run:
           name: Electron tests
           requires:
             - Install
-          executor: browsers-chrome78-ff70
+          executor: cypress/browsers-chrome78-ff70
           install-command: echo 'Nothing to install in this job'
           no-workspace: true
 
@@ -28,7 +28,7 @@ workflows:
           name: Chrome tests
           requires:
             - Install
-          executor: browsers-chrome78-ff70
+          executor: cypress/browsers-chrome78-ff70
           browser: chrome
           install-command: echo 'Nothing to install in this job'
           no-workspace: true
@@ -37,7 +37,7 @@ workflows:
           name: Firefox tests
           requires:
             - Install
-          executor: browsers-chrome78-ff70
+          executor: cypress/browsers-chrome78-ff70
           browser: firefox
           install-command: echo 'Nothing to install in this job'
           no-workspace: true

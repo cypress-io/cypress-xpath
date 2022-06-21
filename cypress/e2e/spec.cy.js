@@ -8,7 +8,7 @@ describe('cypress-xpath', () => {
 
   context('elements', () => {
     beforeEach(() => {
-      cy.visit('cypress/integration/index.html');
+      cy.visit('cypress/e2e/index.html');
     });
 
     it('finds h1', () => {
@@ -135,7 +135,7 @@ describe('cypress-xpath', () => {
 
   context('logging', () => {
     beforeEach(() => {
-      cy.visit('cypress/integration/index.html');
+      cy.visit('cypress/e2e/index.html');
     });
 
     it('should log by default', () => {

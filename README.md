@@ -16,7 +16,7 @@ npm install -D cypress-xpath
 yarn add cypress-xpath --dev
 ```
 
-Then include in your project's `cypress/support/index.js`
+Then include in your project's [support file](https://on.cypress.io/support-file)
 
 ```js
 require('cypress-xpath');

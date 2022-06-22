@@ -46,4 +46,3 @@ workflows:
           requires:
             - Electron tests
             - Chrome tests
-            - Firefox tests

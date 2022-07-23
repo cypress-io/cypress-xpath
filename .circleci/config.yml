@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@2
+  cypress: cypress-io/cypress@2.1.0
 jobs:
   release:
     executor: cypress/browsers-chrome100-ff99-edge

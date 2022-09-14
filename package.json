@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/cypress-io/cypress-xpath#readme",
   "devDependencies": {
-    "cypress": "10.7.0",
+    "cypress": "10.8.0",
     "dependency-version-badge": "1.11.0",
     "semantic-release": "17.4.7"
   },
